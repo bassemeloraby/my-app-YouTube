@@ -17,10 +17,15 @@ function App() {
   const deleteHandler = (id) => {
     setUsers(users.filter((user) => user.id !== id));
   };
-
+//add
+const addUser = (user) => {
+  const id = Math.floor(Math.random() * 10000) + 1
+  const newUser = { id, ...user }
+  setUsers([...users, newUser])
+}
   return (
     <Fragment>
-    <AddUser/>
+    <AddUser onAdd={addUser}/>
     <Users users={users} deleteHandler={deleteHandler}/>
       
     </Fragment>
