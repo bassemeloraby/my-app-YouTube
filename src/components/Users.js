@@ -4,11 +4,14 @@ const Users = ({ users, deleteHandler }) => {
   const [updateState, setUpdateState] = useState(-1);
   const EditHandler = (id) => {
     console.log(id);
+    
     setUpdateState(id);
   };
   return (
     <div className="container row justify-content-center">
-      {users.map((user) => (
+      {users.map((user) =>
+        updateState === user.id ?(<UserUpdate/>):
+        (
         <div
           className="card m-2 col-3"
           style={{ width: '200px' }}
@@ -37,4 +40,15 @@ const Users = ({ users, deleteHandler }) => {
   );
 };
 
+//UserUpdat component
+const UserUpdate =() => {
+  return ( 
+    <div
+    className="card m-2 col-3"
+    style={{ width: '200px' }}
+  >
+    <input type="text" />
+  </div>
+)
+}
 export default Users;
