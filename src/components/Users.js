@@ -1,13 +1,30 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
+import AddUser from './AddUser';
+const Users = ({ deleteHandler }) => {
 
-const Users = ({ users, deleteHandler }) => {
   const [updateState, setUpdateState] = useState(-1);
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      name: 'Leanne Graham',
+      username: 'Bret',
+    },
+    { id: 2, name: 'Ervin Howell', username: 'Antonette' },
+    { id: 3, name: 'Clementine Bauch', username: 'Samantha' },
+  ]);
   const EditHandler = (id) => {
     console.log(id);
     
     setUpdateState(id);
   };
+  //add
+const addUser = (user) => {
+  const id = Math.floor(Math.random() * 10000) + 1
+  const newUser = { id, ...user }
+  setUsers([...users, newUser])
+}
   return (
+    <Fragment><AddUser onAdd={addUser}/>
     <div className="container row justify-content-center">
       {users.map((user) =>
         updateState === user.id ?(<UserUpdate/>):
@@ -37,6 +54,7 @@ const Users = ({ users, deleteHandler }) => {
         </div>
       ))}
     </div>
+    </Fragment>
   );
 };
 
